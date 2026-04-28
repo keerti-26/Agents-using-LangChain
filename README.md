@@ -1,4 +1,4 @@
-#Agent Debugging & Optimization
+# Agent Debugging & Optimization
 
 These three scenarios focus on **real-world failure modes** in LLM-powered agents.
 
