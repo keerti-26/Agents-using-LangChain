@@ -27,7 +27,7 @@ load_dotenv()
 
 
 # ---------------------------------------------------------------------------
-# Simulated database — DO NOT MODIFY this section
+# Simulated database
 # ---------------------------------------------------------------------------
 
 def _generate_fake_orders(n=10000):
@@ -101,7 +101,7 @@ ORDERS_DB[0] = {
 
 
 # ---------------------------------------------------------------------------
-# 🐛 THE BROKEN TOOL — This is what you need to fix
+# 🐛 THE BROKEN TOOL has been fixed here
 # ---------------------------------------------------------------------------
 
 @tool
@@ -174,7 +174,7 @@ def create_agent():
         model='gpt-4o-mini',
         temperature=0,
         api_key=os.getenv("OPENAI_API_KEY"),
-        base_url="https://www.dataexpert.io/api/v1/openai",
+        base_url=os.getenv("BASE_URL"),
         streaming=True,
         default_headers={
             "X-Session-ID": session_id
@@ -195,7 +195,7 @@ def create_agent():
 
 
 # ---------------------------------------------------------------------------
-# Test queries — DO NOT MODIFY
+# Test queries
 # ---------------------------------------------------------------------------
 
 TEST_QUERIES = [
