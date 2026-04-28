@@ -1,0 +1,5 @@
+#### Problem
+The lookup_order_info tool was returning the entire orders database on every query. With 2,000 orders, each containing verbose fields like internal_notes and warehouse_log the payload far exceeded the LLM's context window. As a result, critical order data (like ORD-000001) was pushed out of context and the agent couldn't answer basic customer questions.
+
+#### Approach to solve the issue:  
+Instead of dumping the full database into the prompt, filtering now happens at the Python level before anything reaches the LLM. The tool extracts either an order_id or email from the customer's query using regex, scans the database for only the matching record, and returns a minimal JSON object containing just four fields: order_id, status, delivery_date, and items. Additional optimizations include trimming ISO timestamps to date-only strings, and removing indent=2 from json.dumps to eliminate unnecessary whitespace. The LLM now receives a lean, targeted payload — typically under 200 tokens rather than thousands, ensuring no relevant order information is lost to context overflow.
